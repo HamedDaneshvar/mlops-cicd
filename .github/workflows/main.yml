@@ -60,6 +60,3 @@ jobs:
       - name: Clean up
         run: |
           docker-compose down
-
-volumes:
-  dbdata:
