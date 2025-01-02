@@ -50,6 +50,8 @@ jobs:
           pytest
 
       - name: Build Docker image
+        env:
+          FLASK_ENV: production
         run: |
           docker-compose build
 
