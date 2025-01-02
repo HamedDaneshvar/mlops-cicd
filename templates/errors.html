@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %} {{ title }} {% endblock title %}
+
+{% block wrapper %}
+<div class="wrapper d-flex justify-content-center align-items-center h-100">
+    <div class="text-center">
+        <h1> {{ heading }} </h1>
+        <p> {{ description }} </p>
+        <a href="{{ url_for('home') }}" class="btn btn-primary">Go Back to Home</a>
+    </div>
+</div>
+{% endblock wrapper %}

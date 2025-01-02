@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %} Diagnosis Result {% endblock title %}
+
+{% block main_content %}
+<div class="text-content text-center">
+    <h1>Diagnosis Result</h1>
+    <p class="mt-4">The prediction result is: <strong class="bg-{{ bg_color }}">{{ result }}</strong></p>
+    <a href="{{ url_for('diagnosis') }}">Go Back</a>
+</div>
+{% endblock main_content %}

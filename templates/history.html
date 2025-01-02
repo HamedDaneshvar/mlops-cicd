@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %} Diagnosis History {% endblock title %}
+
+{% block main_content %}
+<div class="text-content text-center">
+    <h1>Diagnosis History</h1>
+    {% if not user_diagnoses %}
+    <h4 class="mt-4">You don't have any diagnosis history.<h4>
+    {% else %}
+    <div class="table-responsive">
+        <table class="table table-striped w-100">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">mean radius</th>
+                    <th scope="col">mean texture</th>
+                    <th scope="col">mean perimeter</th>
+                    <th scope="col">mean area</th>
+                    <th scope="col">mean smoothness</th>
+                    <th scope="col">mean compactness</th>
+                    <th scope="col">mean concavity</th>
+                    <th scope="col">mean concave points</th>
+                    <th scope="col">mean symmetry</th>
+                    <th scope="col">mean fractal dimension</th>
+                    <th scope="col">radius error</th>
+                    <th scope="col">texture error</th>
+                    <th scope="col">perimeter error</th>
+                    <th scope="col">area error</th>
+                    <th scope="col">smoothness error</th>
+                    <th scope="col">compactness error</th>
+                    <th scope="col">concavity error</th>
+                    <th scope="col">concave points error</th>
+                    <th scope="col">symmetry error</th>
+                    <th scope="col">fractal dimensionerror</th>
+                    <th scope="col">worst radius</th>
+                    <th scope="col">worst texture</th>
+                    <th scope="col">worst perimeter</th>
+                    <th scope="col">worst area</th>
+                    <th scope="col">worst smoothness</th>
+                    <th scope="col">worst compactness</th>
+                    <th scope="col">worst concavity</th>
+                    <th scope="col">worst concave points</th>
+                    <th scope="col">worst symmetry</th>
+                    <th scope="col">worst fractal dimension</th>
+                    <th scope="col">diagnosis result</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for diagnosis in user_diagnoses %}
+                <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ diagnosis.mean_radius }}</td>
+                    <td>{{ diagnosis.mean_texture }}</td>
+                    <td>{{ diagnosis.mean_perimeter }}</td>
+                    <td>{{ diagnosis.mean_area }}</td>
+                    <td>{{ diagnosis.mean_smoothness }}</td>
+                    <td>{{ diagnosis.mean_compactness }}</td>
+                    <td>{{ diagnosis.mean_concavity }}</td>
+                    <td>{{ diagnosis.mean_concave_points }}</td>
+                    <td>{{ diagnosis.mean_symmetry }}</td>
+                    <td>{{ diagnosis.mean_fractal_dimension }}</td>
+                    <td>{{ diagnosis.radius_error }}</td>
+                    <td>{{ diagnosis.texture_error }}</td>
+                    <td>{{ diagnosis.perimeter_error }}</td>
+                    <td>{{ diagnosis.area_error }}</td>
+                    <td>{{ diagnosis.smoothness_error }}</td>
+                    <td>{{ diagnosis.compactness_error }}</td>
+                    <td>{{ diagnosis.concavity_error }}</td>
+                    <td>{{ diagnosis.concave_points_error }}</td>
+                    <td>{{ diagnosis.symmetry_error }}</td>
+                    <td>{{ diagnosis.fractal_dimension_error }}</td>
+                    <td>{{ diagnosis.worst_radius }}</td>
+                    <td>{{ diagnosis.worst_texture }}</td>
+                    <td>{{ diagnosis.worst_perimeter }}</td>
+                    <td>{{ diagnosis.worst_area }}</td>
+                    <td>{{ diagnosis.worst_smoothness }}</td>
+                    <td>{{ diagnosis.worst_compactness }}</td>
+                    <td>{{ diagnosis.worst_concavity }}</td>
+                    <td>{{ diagnosis.worst_concave_points }}</td>
+                    <td>{{ diagnosis.worst_symmetry }}</td>
+                    <td>{{ diagnosis.worst_fractal_dimension }}</td>
+                    {% if diagnosis.diagnosis_result == 'Cancerous' %}
+                    <td class="bg-danger">{{ diagnosis.diagnosis_result }}</td>
+                    {% else %}
+                    <td class="bg-success">{{ diagnosis.diagnosis_result }}</td>
+                    {% endif %}
+                </tr>               
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% endif %}
+</div>
+{% endblock main_content %}

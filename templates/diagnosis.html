@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %} Cancer Diagnosis {% endblock title %}
+
+{% block main_content %}
+<div class="d-flex justify-content-center align-items-center h-100">
+    <div class="col-4 card">
+        <div class="card-body">
+            <h5 class="card-title text-center">Cancer Diagnosis Form</h5>
+            <form method="POST" action="{{ url_for('diagnosis') }}" novalidate>
+                {{ form.csrf_token }}
+
+                {% for field in form %}
+                    {% if field.type != 'CSRFTokenField' and field.type != 'SubmitField' %}
+                        <div class="form-group my-2">
+                            {{ field.label(class="mb-1") }}
+                            
+                            {% if not field.errors %}
+                                {{ field(placeholder="please write your " ~ field.label.text ~ " here", class="form-control") }}
+                            {% else %}
+                                {{ field(placeholder="please write your " ~ field.label.text ~ " here", class="form-control is-invalid") }}
+                                
+                                {% for error in field.errors %}
+                                    <div class="invalid-feedback">
+                                        {{ error }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                <div class="text-center my-2">
+                    {{ form.submit(class="btn btn-primary mt-2") }}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main_content %}
