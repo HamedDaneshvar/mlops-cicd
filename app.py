@@ -32,8 +32,16 @@ POSTGRES_DB = os.getenv('POSTGRES_DB')
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = SECRET_KEY
-# database
-app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:5432/{POSTGRES_DB}'
+# Check if we are in testing mode
+if os.getenv('FLASK_ENV') == 'testing':
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'  # In-memory SQLite for testing
+else:
+    POSTGRES_USER = os.getenv('POSTGRES_USER')
+    POSTGRES_PASSWORD = os.getenv('POSTGRES_PASSWORD')
+    POSTGRES_HOST = os.getenv('POSTGRES_HOST')
+    POSTGRES_DB = os.getenv('POSTGRES_DB')
+    # PostgreSQL database
+    app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:5432/{POSTGRES_DB}'
 db.init_app(app)
 
 
